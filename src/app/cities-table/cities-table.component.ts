@@ -51,8 +51,10 @@ export class CitiesTableSource extends DataSource<CityWeather> {
             this.paginator.page,
         ];
 
+
         return merge(...displayDataChanges)
-            .map(() => {
+            .map((_r) => {
+                console.log(_r)
                 let data;
                 this.database.cities.subscribe((_data) => {
                     data = _data;
@@ -60,9 +62,7 @@ export class CitiesTableSource extends DataSource<CityWeather> {
                 this.paginator.length = data.length;
 
                 const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-                const finalData = data.splice(startIndex, this.paginator.pageSize);
-
-                return finalData;
+                return data.slice(startIndex, startIndex + this.paginator.pageSize);
             });
     }
 

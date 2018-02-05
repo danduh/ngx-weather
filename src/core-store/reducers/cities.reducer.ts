@@ -6,11 +6,6 @@ export interface WeatherState {
     cnt: number;
 }
 
-const defaultCitiesState = {
-    cities: null,
-    cnt: 0,
-};
-
 const defaultBaseState = {
     humidity: 50,
     temp: 21
@@ -36,7 +31,7 @@ export function baseDataReducer(state: BaseData, action: CitiesActions) {
         case CitiesActionTypes.INITIAL:
             state = Object.assign({}, state, defaultBaseState);
             return state;
-        //
+
         default:
             return state;
     }
